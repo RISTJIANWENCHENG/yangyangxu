@@ -44,7 +44,7 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;display:
 .scroll-bar::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--accent);animation:scrollAnim 1.8s 1.6s ease-in-out infinite}
 .home-right{position:relative;overflow:hidden}
 .home-visual{position:absolute;inset:0;background:linear-gradient(135deg,#100e09 0%,#0b0b0b 60%,#0a0d0f 100%)}
-.home-grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:56px 56px}
+.home-grid-bg{display:none}
 .home-fade-left{position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 0%,transparent 40%)}
 .home-deco{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:22vw;font-weight:300;color:rgba(201,169,110,.025);line-height:1;pointer-events:none;white-space:nowrap;user-select:none;letter-spacing:-.04em}
 .home-stats{position:absolute;bottom:80px;right:56px;display:flex;flex-direction:column;gap:36px;text-align:right;opacity:0;animation:fadeUp .8s 1.2s ease forwards}
@@ -67,6 +67,12 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;display:
 .video-item{position:relative;background:#111;overflow:hidden}
 .video-item.std{aspect-ratio:16/9}
 .video-item.feat{aspect-ratio:21/9}
+.yt-facade{cursor:pointer;position:relative}
+.yt-thumb{width:100%;height:100%;object-fit:cover;display:block;transition:filter .4s}
+.yt-facade:hover .yt-thumb{filter:brightness(.75)}
+.yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;transition:transform .2s,opacity .2s;opacity:.9}
+.yt-facade:hover .yt-play{transform:translate(-50%,-50%) scale(1.12);opacity:1}
+.yt-facade iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 .video-item iframe{width:100%;height:100%;border:none;display:block}
 .video-caption{padding:16px 20px;background:var(--surface);border-top:1px solid var(--border)}
 .video-cap-tag{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
@@ -185,36 +191,44 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
       <span class="sec-right">Effects &amp; Simulations</span>
     </div>
     <div class="video-grid">
+      <!-- Video 1 featured -->
       <div class="video-wrapper featured reveal">
-        <div class="video-item feat">
-          <iframe src="https://www.youtube-nocookie.com/embed/c9fsBy45YTQ?rel=0&modestbranding=1" title="Main Reel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-item feat yt-facade" data-id="c9fsBy45YTQ">
+          <img class="yt-thumb" src="https://i.ytimg.com/vi/c9fsBy45YTQ/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/c9fsBy45YTQ/hqdefault.jpg'" alt="Main Reel">
+          <div class="yt-play"><svg viewBox="0 0 68 48"><path d="M66.5 7.8A8.5 8.5 0 0 0 60.3 1.6C55 0 34 0 34 0S13 0 7.7 1.6A8.5 8.5 0 0 0 1.5 7.8C0 13.1 0 24 0 24s0 10.9 1.5 16.2a8.5 8.5 0 0 0 6.2 6.2C13 48 34 48 34 48s21 0 26.3-1.6a8.5 8.5 0 0 0 6.2-6.2C68 34.9 68 24 68 24s0-10.9-1.5-16.2z" fill="#ff0000"/><path d="M27 34l18-10-18-10v20z" fill="#fff"/></svg></div>
         </div>
         <div class="video-caption">
           <div class="video-cap-tag">Demo Reel</div>
           <div class="video-cap-title">Main Effects Reel — Feature Film &amp; Games</div>
         </div>
       </div>
+      <!-- Video 2 -->
       <div class="video-wrapper reveal">
-        <div class="video-item std">
-          <iframe src="https://www.youtube-nocookie.com/embed/5WfTEZJnv_8?rel=0&modestbranding=1" title="FX Breakdown" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-item std yt-facade" data-id="5WfTEZJnv_8">
+          <img class="yt-thumb" src="https://i.ytimg.com/vi/5WfTEZJnv_8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/5WfTEZJnv_8/hqdefault.jpg'" alt="FX Breakdown">
+          <div class="yt-play"><svg viewBox="0 0 68 48"><path d="M66.5 7.8A8.5 8.5 0 0 0 60.3 1.6C55 0 34 0 34 0S13 0 7.7 1.6A8.5 8.5 0 0 0 1.5 7.8C0 13.1 0 24 0 24s0 10.9 1.5 16.2a8.5 8.5 0 0 0 6.2 6.2C13 48 34 48 34 48s21 0 26.3-1.6a8.5 8.5 0 0 0 6.2-6.2C68 34.9 68 24 68 24s0-10.9-1.5-16.2z" fill="#ff0000"/><path d="M27 34l18-10-18-10v20z" fill="#fff"/></svg></div>
         </div>
         <div class="video-caption">
           <div class="video-cap-tag">Breakdown</div>
           <div class="video-cap-title">Effects Breakdown — Vol. 1</div>
         </div>
       </div>
+      <!-- Video 3 -->
       <div class="video-wrapper reveal">
-        <div class="video-item std">
-          <iframe src="https://www.youtube-nocookie.com/embed/Go8nTmfrQd8?rel=0&modestbranding=1" title="FX Simulation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-item std yt-facade" data-id="Go8nTmfrQd8">
+          <img class="yt-thumb" src="https://i.ytimg.com/vi/Go8nTmfrQd8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/Go8nTmfrQd8/hqdefault.jpg'" alt="FX Simulation">
+          <div class="yt-play"><svg viewBox="0 0 68 48"><path d="M66.5 7.8A8.5 8.5 0 0 0 60.3 1.6C55 0 34 0 34 0S13 0 7.7 1.6A8.5 8.5 0 0 0 1.5 7.8C0 13.1 0 24 0 24s0 10.9 1.5 16.2a8.5 8.5 0 0 0 6.2 6.2C13 48 34 48 34 48s21 0 26.3-1.6a8.5 8.5 0 0 0 6.2-6.2C68 34.9 68 24 68 24s0-10.9-1.5-16.2z" fill="#ff0000"/><path d="M27 34l18-10-18-10v20z" fill="#fff"/></svg></div>
         </div>
         <div class="video-caption">
           <div class="video-cap-tag">FX Simulation</div>
           <div class="video-cap-title">Effects Breakdown — Vol. 2</div>
         </div>
       </div>
+      <!-- Video 4 featured -->
       <div class="video-wrapper featured reveal">
-        <div class="video-item feat">
-          <iframe src="https://www.youtube-nocookie.com/embed/bHXejJq5vr0?rel=0&modestbranding=1" title="FX Reel" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <div class="video-item feat yt-facade" data-id="bHXejJq5vr0">
+          <img class="yt-thumb" src="https://i.ytimg.com/vi/bHXejJq5vr0/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/bHXejJq5vr0/hqdefault.jpg'" alt="FX Reel">
+          <div class="yt-play"><svg viewBox="0 0 68 48"><path d="M66.5 7.8A8.5 8.5 0 0 0 60.3 1.6C55 0 34 0 34 0S13 0 7.7 1.6A8.5 8.5 0 0 0 1.5 7.8C0 13.1 0 24 0 24s0 10.9 1.5 16.2a8.5 8.5 0 0 0 6.2 6.2C13 48 34 48 34 48s21 0 26.3-1.6a8.5 8.5 0 0 0 6.2-6.2C68 34.9 68 24 68 24s0-10.9-1.5-16.2z" fill="#ff0000"/><path d="M27 34l18-10-18-10v20z" fill="#fff"/></svg></div>
         </div>
         <div class="video-caption">
           <div class="video-cap-tag">Selected Work</div>
@@ -481,6 +495,21 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+// YouTube click-to-play
+document.querySelectorAll('.yt-facade').forEach(el => {
+  el.addEventListener('click', () => {
+    const id = el.dataset.id;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`;
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.frameBorder = '0';
+    el.innerHTML = '';
+    el.appendChild(iframe);
+    el.style.cursor = 'default';
+  });
+});
+
 // Cursor
 const cursor = document.getElementById('cursor');
 const ring   = document.getElementById('cursorRing');
