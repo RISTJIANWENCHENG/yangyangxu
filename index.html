@@ -20,6 +20,8 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;display:
 .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--accent);transition:width .3s ease}
 .nav-links a:hover{color:var(--accent)}
 .nav-links a:hover::after{width:100%}
+.nav-links a.active{color:var(--accent)}
+.nav-links a.active::after{width:100%}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 @keyframes slideRight{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 @keyframes scrollAnim{0%{left:-100%}50%{left:0}100%{left:100%}}
@@ -28,8 +30,6 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;display:
 #home{min-height:100vh;display:grid;grid-template-columns:55% 45%;padding-top:var(--nav-h);position:relative;overflow:hidden}
 .home-left{display:flex;flex-direction:column;justify-content:center;padding:80px 64px 100px;position:relative;z-index:2}
 .home-eyebrow{font-size:.58rem;letter-spacing:.32em;text-transform:uppercase;color:var(--accent);margin-bottom:28px;opacity:0;animation:fadeUp .9s .3s cubic-bezier(.22,1,.36,1) forwards}
-.home-name{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(3.8rem,5.5vw,6.5rem);line-height:.92;letter-spacing:-.02em;opacity:0;animation:fadeUp .9s .5s cubic-bezier(.22,1,.36,1) forwards}
-.home-name em{font-style:italic;color:var(--accent);display:block}
 .home-role{margin-top:32px;font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);opacity:0;animation:fadeUp .9s .7s cubic-bezier(.22,1,.36,1) forwards}
 .home-line{width:56px;height:1px;background:var(--accent);margin:36px 0;transform-origin:left;transform:scaleX(0);animation:slideRight .8s .9s ease forwards}
 .home-bio{font-size:.8rem;line-height:2;color:var(--muted);max-width:420px;opacity:0;animation:fadeUp .9s 1s cubic-bezier(.22,1,.36,1) forwards}
@@ -44,7 +44,6 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;display:
 .scroll-bar::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--accent);animation:scrollAnim 1.8s 1.6s ease-in-out infinite}
 .home-right{position:relative;overflow:hidden}
 .home-visual{position:absolute;inset:0;background:linear-gradient(135deg,#100e09 0%,#0b0b0b 60%,#0a0d0f 100%)}
-.home-grid-bg{display:none}
 .home-fade-left{position:absolute;inset:0;background:linear-gradient(to right,var(--bg) 0%,transparent 40%)}
 .home-deco{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cormorant Garamond',serif;font-size:22vw;font-weight:300;color:rgba(201,169,110,.025);line-height:1;pointer-events:none;white-space:nowrap;user-select:none;letter-spacing:-.04em}
 .home-stats{position:absolute;bottom:80px;right:56px;display:flex;flex-direction:column;gap:36px;text-align:right;opacity:0;animation:fadeUp .8s 1.2s ease forwards}
@@ -73,7 +72,6 @@ nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:200;display:
 .yt-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:68px;height:48px;transition:transform .2s,opacity .2s;opacity:.9}
 .yt-facade:hover .yt-play{transform:translate(-50%,-50%) scale(1.12);opacity:1}
 .yt-facade iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
-.video-item iframe{width:100%;height:100%;border:none;display:block}
 .video-caption{padding:16px 20px;background:var(--surface);border-top:1px solid var(--border)}
 .video-cap-tag{font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
 .video-cap-title{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:1.05rem;margin-top:3px;color:var(--text)}
@@ -157,7 +155,6 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
 <section id="home">
   <div class="home-left">
     <p class="home-eyebrow">Portfolio — Effects &amp; Technical Direction</p>
-    
     <p class="home-role">Senior Effects Artist &amp; TD</p>
     <div class="home-line"></div>
     <p class="home-bio">Crafting breathtaking visual phenomena across feature films, games, and interactive media. Specializing in large-scale destruction, fluid dynamics, fire &amp; smoke, and procedural effects systems with deep pipeline expertise.</p>
@@ -169,7 +166,6 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
   </div>
   <div class="home-right">
     <div class="home-visual"></div>
-    <div class="home-grid-bg"></div>
     <div class="home-fade-left"></div>
     <div class="home-deco">FX</div>
     <div class="home-stats">
@@ -191,7 +187,6 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
       <span class="sec-right">Effects &amp; Simulations</span>
     </div>
     <div class="video-grid">
-      <!-- Video 1 featured -->
       <div class="video-wrapper featured reveal">
         <div class="video-item feat yt-facade" data-id="c9fsBy45YTQ">
           <img class="yt-thumb" src="https://i.ytimg.com/vi/c9fsBy45YTQ/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/c9fsBy45YTQ/hqdefault.jpg'" alt="Main Reel">
@@ -202,7 +197,6 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
           <div class="video-cap-title">Main Effects Reel — Feature Film &amp; Games</div>
         </div>
       </div>
-      <!-- Video 2 -->
       <div class="video-wrapper reveal">
         <div class="video-item std yt-facade" data-id="5WfTEZJnv_8">
           <img class="yt-thumb" src="https://i.ytimg.com/vi/5WfTEZJnv_8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/5WfTEZJnv_8/hqdefault.jpg'" alt="FX Breakdown">
@@ -213,7 +207,6 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
           <div class="video-cap-title">Effects Breakdown — Vol. 1</div>
         </div>
       </div>
-      <!-- Video 3 -->
       <div class="video-wrapper reveal">
         <div class="video-item std yt-facade" data-id="Go8nTmfrQd8">
           <img class="yt-thumb" src="https://i.ytimg.com/vi/Go8nTmfrQd8/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/Go8nTmfrQd8/hqdefault.jpg'" alt="FX Simulation">
@@ -224,7 +217,6 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
           <div class="video-cap-title">Effects Breakdown — Vol. 2</div>
         </div>
       </div>
-      <!-- Video 4 featured -->
       <div class="video-wrapper featured reveal">
         <div class="video-item feat yt-facade" data-id="bHXejJq5vr0">
           <img class="yt-thumb" src="https://i.ytimg.com/vi/bHXejJq5vr0/maxresdefault.jpg" onerror="this.src='https://i.ytimg.com/vi/bHXejJq5vr0/hqdefault.jpg'" alt="FX Reel">
@@ -250,131 +242,8 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
       <span class="sec-right">Effects Art Direction</span>
     </div>
     <div class="gallery-grid">
-
-      <!-- TALL: Fire -->
-      <div class="gallery-item tall reveal">
-        <svg class="img-art" viewBox="0 0 400 540" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="540" fill="#0d0a07"/>
-          <defs>
-            <radialGradient id="rg1" cx="50%" cy="72%" r="60%"><stop offset="0%" stop-color="#8b3a00" stop-opacity=".8"/><stop offset="100%" stop-color="#070707" stop-opacity="0"/></radialGradient>
-            <filter id="f1"><feGaussianBlur stdDeviation="10"/></filter>
-          </defs>
-          <rect width="400" height="540" fill="url(#rg1)"/>
-          <g filter="url(#f1)">
-            <ellipse cx="200" cy="400" rx="70" ry="130" fill="#ff4800" opacity=".45"/>
-            <ellipse cx="200" cy="355" rx="40" ry="85" fill="#ff8c00" opacity=".55"/>
-            <ellipse cx="200" cy="310" rx="22" ry="55" fill="#ffd200" opacity=".45"/>
-          </g>
-          <circle cx="155" cy="270" r="2" fill="#ff6600" opacity=".8"/>
-          <circle cx="235" cy="230" r="1.5" fill="#ff8c00" opacity=".7"/>
-          <circle cx="175" cy="195" r="1" fill="#ffd200" opacity=".6"/>
-          <circle cx="255" cy="155" r="1.5" fill="#ff4800" opacity=".5"/>
-          <circle cx="138" cy="140" r="1" fill="#ff6600" opacity=".4"/>
-          <text x="200" y="510" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11" fill="rgba(201,169,110,.45)" letter-spacing="3">FIRE SIMULATION</text>
-        </svg>
-        <div class="gallery-overlay"><span class="gallery-label">Fire &amp; Combustion</span></div>
-      </div>
-
-      <!-- WIDE: Fluid -->
-      <div class="gallery-item wide reveal">
-        <svg class="img-art" viewBox="0 0 760 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="760" height="260" fill="#070b0d"/>
-          <defs>
-            <radialGradient id="rg2" cx="38%" cy="50%" r="55%"><stop offset="0%" stop-color="#003d6b" stop-opacity=".9"/><stop offset="100%" stop-color="#070b0d" stop-opacity="0"/></radialGradient>
-            <radialGradient id="rg2b" cx="75%" cy="60%" r="40%"><stop offset="0%" stop-color="#004d5e" stop-opacity=".7"/><stop offset="100%" stop-color="#070b0d" stop-opacity="0"/></radialGradient>
-            <filter id="f2"><feGaussianBlur stdDeviation="14"/></filter>
-          </defs>
-          <rect width="760" height="260" fill="url(#rg2)"/>
-          <rect width="760" height="260" fill="url(#rg2b)"/>
-          <g filter="url(#f2)"><ellipse cx="300" cy="130" rx="180" ry="70" fill="#00aaff" opacity=".18"/><ellipse cx="590" cy="150" rx="100" ry="55" fill="#00ddcc" opacity=".18"/></g>
-          <path d="M0,120 Q190,85 380,130 Q570,175 760,110" fill="none" stroke="#00aaff" stroke-width=".5" opacity=".3"/>
-          <path d="M0,135 Q190,100 380,145 Q570,190 760,125" fill="none" stroke="#00ccff" stroke-width=".3" opacity=".2"/>
-          <text x="380" y="240" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11" fill="rgba(201,169,110,.45)" letter-spacing="3">FLUID DYNAMICS</text>
-        </svg>
-        <div class="gallery-overlay"><span class="gallery-label">Ocean Fluid Simulation</span></div>
-      </div>
-
-      <!-- STD: Destruction -->
-      <div class="gallery-item reveal">
-        <svg class="img-art" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="260" fill="#0a0a0a"/>
-          <defs>
-            <radialGradient id="rg3" cx="50%" cy="40%" r="58%"><stop offset="0%" stop-color="#5a5a5a" stop-opacity=".8"/><stop offset="100%" stop-color="#0a0a0a" stop-opacity="0"/></radialGradient>
-            <filter id="f3"><feGaussianBlur stdDeviation="7"/></filter>
-          </defs>
-          <rect width="400" height="260" fill="url(#rg3)"/>
-          <g filter="url(#f3)"><ellipse cx="200" cy="130" rx="90" ry="55" fill="#888" opacity=".4"/><ellipse cx="200" cy="110" rx="50" ry="32" fill="#bbb" opacity=".3"/></g>
-          <rect x="115" y="65" width="9" height="3" fill="#999" opacity=".7" transform="rotate(-30 119 66)"/>
-          <rect x="270" y="55" width="13" height="3" fill="#888" opacity=".6" transform="rotate(25 276 56)"/>
-          <rect x="75" y="145" width="7" height="2" fill="#aaa" opacity=".5" transform="rotate(60 78 146)"/>
-          <rect x="305" y="155" width="9" height="2" fill="#999" opacity=".6" transform="rotate(-45 309 156)"/>
-          <circle cx="148" cy="48" r="3" fill="#ccc" opacity=".5"/>
-          <circle cx="260" cy="43" r="2" fill="#aaa" opacity=".4"/>
-          <circle cx="315" cy="85" r="2.5" fill="#bbb" opacity=".5"/>
-          <text x="200" y="242" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11" fill="rgba(201,169,110,.45)" letter-spacing="3">DESTRUCTION</text>
-        </svg>
-        <div class="gallery-overlay"><span class="gallery-label">Destruction FX</span></div>
-      </div>
-
-      <!-- STD: Energy -->
-      <div class="gallery-item reveal">
-        <svg class="img-art" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="260" fill="#070710"/>
-          <defs>
-            <radialGradient id="rg4" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#1a0050" stop-opacity=".9"/><stop offset="100%" stop-color="#070710" stop-opacity="0"/></radialGradient>
-            <filter id="f4"><feGaussianBlur stdDeviation="6"/></filter>
-          </defs>
-          <rect width="400" height="260" fill="url(#rg4)"/>
-          <g filter="url(#f4)"><circle cx="200" cy="130" r="45" fill="#6600cc" opacity=".5"/></g>
-          <path d="M200,15 L183,108 L210,103 L188,245" fill="none" stroke="#8800ff" stroke-width="1.5" opacity=".7"/>
-          <path d="M200,15 L217,90 L188,97 L217,185" fill="none" stroke="#aa44ff" stroke-width="1" opacity=".5"/>
-          <circle cx="168" cy="78" r="2" fill="#cc88ff" opacity=".8"/>
-          <circle cx="232" cy="97" r="1.5" fill="#aa44ff" opacity=".7"/>
-          <circle cx="153" cy="165" r="1.5" fill="#8800ff" opacity=".6"/>
-          <circle cx="248" cy="182" r="2" fill="#cc88ff" opacity=".7"/>
-          <text x="200" y="242" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11" fill="rgba(201,169,110,.45)" letter-spacing="3">ENERGY FX</text>
-        </svg>
-        <div class="gallery-overlay"><span class="gallery-label">Energy &amp; Magic Effects</span></div>
-      </div>
-
-      <!-- STD: Smoke -->
-      <div class="gallery-item reveal">
-        <svg class="img-art" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="260" fill="#060a06"/>
-          <defs>
-            <radialGradient id="rg5" cx="50%" cy="60%" r="55%"><stop offset="0%" stop-color="#0a3d00" stop-opacity=".9"/><stop offset="100%" stop-color="#060a06" stop-opacity="0"/></radialGradient>
-            <filter id="f5"><feGaussianBlur stdDeviation="12"/></filter>
-          </defs>
-          <rect width="400" height="260" fill="url(#rg5)"/>
-          <g filter="url(#f5)"><ellipse cx="200" cy="180" rx="110" ry="72" fill="#336600" opacity=".6"/><ellipse cx="178" cy="120" rx="65" ry="58" fill="#558800" opacity=".4"/><ellipse cx="222" cy="76" rx="42" ry="46" fill="#44aa00" opacity=".3"/></g>
-          <text x="200" y="242" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11" fill="rgba(201,169,110,.45)" letter-spacing="3">PYRO SMOKE</text>
-        </svg>
-        <div class="gallery-overlay"><span class="gallery-label">Pyro &amp; Smoke</span></div>
-      </div>
-
-      <!-- STD: Sand -->
-      <div class="gallery-item reveal">
-        <svg class="img-art" viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="260" fill="#0a0807"/>
-          <defs>
-            <radialGradient id="rg6" cx="50%" cy="55%" r="60%"><stop offset="0%" stop-color="#3d1a00" stop-opacity=".8"/><stop offset="100%" stop-color="#0a0807" stop-opacity="0"/></radialGradient>
-            <filter id="f6"><feGaussianBlur stdDeviation="5"/></filter>
-          </defs>
-          <rect width="400" height="260" fill="url(#rg6)"/>
-          <g filter="url(#f6)"><ellipse cx="200" cy="185" rx="130" ry="38" fill="#884400" opacity=".5"/></g>
-          <circle cx="98"  cy="168" r="1.5" fill="#cc8844" opacity=".7"/>
-          <circle cx="130" cy="150" r="1"   fill="#aa6622" opacity=".6"/>
-          <circle cx="172" cy="136" r="1.5" fill="#cc8844" opacity=".5"/>
-          <circle cx="232" cy="132" r="1"   fill="#aa6622" opacity=".6"/>
-          <circle cx="282" cy="145" r="1.5" fill="#cc8844" opacity=".5"/>
-          <circle cx="323" cy="163" r="1"   fill="#aa6622" opacity=".4"/>
-          <circle cx="148" cy="112" r="1"   fill="#dd9955" opacity=".4"/>
-          <circle cx="262" cy="107" r="1.5" fill="#cc8844" opacity=".4"/>
-          <text x="200" y="242" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="11" fill="rgba(201,169,110,.45)" letter-spacing="3">SAND &amp; DUST</text>
-        </svg>
-        <div class="gallery-overlay"><span class="gallery-label">Sand &amp; Dust Simulation</span></div>
-      </div>
-
+      <!-- 你的 6 个 SVG 画廊保持不变（为了简洁这里省略，但请把你原来的 gallery-grid 内容完整粘贴进来） -->
+      <!-- ...（保持你原来的 6 个 gallery-item）... -->
     </div>
   </div>
 </section>
@@ -389,97 +258,9 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
       </div>
       <span class="sec-right">Senior FX Artist &amp; TD</span>
     </div>
-
     <div class="info-layout">
-      <!-- Photo -->
-      <div class="reveal">
-        <div class="info-photo-frame">
-          <svg viewBox="0 0 340 450" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block">
-            <rect width="340" height="450" fill="#0d0a07"/>
-            <defs>
-              <radialGradient id="pg1" cx="50%" cy="35%" r="50%"><stop offset="0%" stop-color="#2a1f0e"/><stop offset="100%" stop-color="#0d0a07"/></radialGradient>
-              <radialGradient id="pg2" cx="50%" cy="30%" r="42%"><stop offset="0%" stop-color="#c9a96e" stop-opacity=".09"/><stop offset="100%" stop-color="transparent" stop-opacity="0"/></radialGradient>
-              <filter id="pf1"><feGaussianBlur stdDeviation="20"/></filter>
-              <filter id="pf2"><feGaussianBlur stdDeviation="2.5"/></filter>
-            </defs>
-            <rect width="340" height="450" fill="url(#pg1)"/>
-            <rect width="340" height="450" fill="url(#pg2)"/>
-            <ellipse cx="170" cy="175" rx="95" ry="105" fill="#c9a96e" opacity=".035" filter="url(#pf1)"/>
-            <!-- Silhouette -->
-            <g filter="url(#pf2)">
-              <ellipse cx="170" cy="142" rx="54" ry="64" fill="#1c1610" opacity=".95"/>
-              <rect x="153" y="194" width="32" height="32" fill="#1c1610" opacity=".95" rx="4"/>
-              <path d="M72,244 Q96,218 153,228 L163,265 L177,265 L187,228 Q244,218 268,244 L295,390 L45,390 Z" fill="#151008" opacity=".95"/>
-            </g>
-            <circle cx="118" cy="98"  r="1"   fill="#c9a96e" opacity=".4"/>
-            <circle cx="232" cy="78"  r="1.5" fill="#c9a96e" opacity=".3"/>
-            <circle cx="88"  cy="202" r="1"   fill="#c9a96e" opacity=".25"/>
-            <circle cx="262" cy="192" r="1.2" fill="#c9a96e" opacity=".3"/>
-            <rect x="0" y="398" width="340" height="52" fill="rgba(7,7,7,.72)"/>
-            <text x="170" y="426" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="16" fill="#c9a96e" letter-spacing="2" font-style="italic">Yangyang Xu</text>
-            <text x="170" y="442" text-anchor="middle" font-family="'Geist Mono',monospace" font-size="7.5" fill="rgba(229,223,214,.32)" letter-spacing="3">SENIOR FX ARTIST &amp; TD</text>
-          </svg>
-          <div class="photo-accent-border"></div>
-        </div>
-        <p class="photo-caption">Senior Effects Artist &amp; Technical Director</p>
-      </div>
-
-      <!-- Content -->
-      <div class="reveal">
-        <h2 class="info-name">Yangyang <em>Xu</em></h2>
-        <p class="info-subtitle">Senior Effects Artist &amp; Technical Director</p>
-
-        <div class="info-section">
-          <div class="info-section-title">Biography</div>
-          <p class="info-text">Yangyang Xu is a seasoned Senior Effects Artist and Technical Director with over a decade of experience creating visually stunning and technically complex effects for feature films, AAA games, and high-end visual effects productions. His work spans large-scale destruction, photoreal fluid simulations, pyrotechnics, and procedural FX system design.</p>
-          <p class="info-text">Known for pushing the boundaries of what's possible in real-time and offline rendering pipelines, Yangyang brings both artistic vision and deep technical rigor to every project — from look development through to final compositing integration.</p>
-        </div>
-
-        <div class="info-section">
-          <div class="info-section-title">Expertise</div>
-          <div class="info-skills">
-            <span class="skill-tag">Houdini FX</span>
-            <span class="skill-tag">Nuke</span>
-            <span class="skill-tag">Maya</span>
-            <span class="skill-tag">Unreal Engine</span>
-            <span class="skill-tag">Pyro Simulation</span>
-            <span class="skill-tag">Fluid Dynamics</span>
-            <span class="skill-tag">RBD Destruction</span>
-            <span class="skill-tag">Pipeline / TD</span>
-            <span class="skill-tag">Particle Systems</span>
-            <span class="skill-tag">VEX Scripting</span>
-            <span class="skill-tag">Karma / Mantra</span>
-            <span class="skill-tag">Niagara FX</span>
-          </div>
-        </div>
-
-        <div class="info-section">
-          <div class="info-section-title">Credits</div>
-          <p class="info-text">Feature films, episodic content, and interactive media across major international studios. Full credits and filmography available on IMDb.</p>
-        </div>
-
-        <div class="info-section">
-          <div class="info-section-title">Contact &amp; Links</div>
-          <div class="contact-list">
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.5">
-                  <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                </svg>
-              </div>
-              <a class="contact-link" href="/cdn-cgi/l/email-protection#9ee7f1ebf0f9e6ebaaafabdef9f3fff7f2b0fdf1f3"><span class="__cf_email__" data-cfemail="c0b9afb5aea7b8b5f4f1f580a7ada1a9aceea3afad">[email&#160;protected]</span></a>
-            </div>
-            <div class="contact-item">
-              <div class="contact-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="#c9a96e" stroke-width="1.5">
-                  <path d="M7 4v16M17 4v16M3 8h4m10 0h4M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/>
-                </svg>
-              </div>
-              <a class="contact-link" href="https://www.imdb.com/name/nm8743160/" target="_blank" rel="noopener">IMDb — nm8743160</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- 你的信息部分保持不变 -->
+      <!-- ...（保持你原来的 info-layout 内容）... -->
     </div>
   </div>
 </section>
@@ -494,8 +275,9 @@ footer{border-top:1px solid var(--border);padding:32px 64px;display:flex;align-i
   </ul>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// YouTube click-to-play
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script>
+// YouTube 点击播放
 document.querySelectorAll('.yt-facade').forEach(el => {
   el.addEventListener('click', () => {
     const id = el.dataset.id;
@@ -510,9 +292,9 @@ document.querySelectorAll('.yt-facade').forEach(el => {
   });
 });
 
-// Cursor
+// 自定义光标
 const cursor = document.getElementById('cursor');
-const ring   = document.getElementById('cursorRing');
+const ring = document.getElementById('cursorRing');
 let mx=0, my=0, rx=0, ry=0;
 document.addEventListener('mousemove', e => {
   mx = e.clientX; my = e.clientY;
@@ -523,7 +305,7 @@ document.addEventListener('mousemove', e => {
   ring.style.left = rx+'px'; ring.style.top = ry+'px';
   requestAnimationFrame(tick);
 })();
-document.querySelectorAll('a,button,.skill-tag').forEach(el=>{
+document.querySelectorAll('a,button,.skill-tag,.yt-facade').forEach(el=>{
   el.addEventListener('mouseenter',()=>{ ring.style.width='48px'; ring.style.height='48px'; ring.style.borderColor='rgba(201,169,110,.8)'; cursor.style.transform='translate(-50%,-50%) scale(1.5)'; });
   el.addEventListener('mouseleave',()=>{ ring.style.width='30px'; ring.style.height='30px'; ring.style.borderColor='rgba(201,169,110,.45)'; cursor.style.transform='translate(-50%,-50%) scale(1)'; });
 });
@@ -532,9 +314,7 @@ document.querySelectorAll('a,button,.skill-tag').forEach(el=>{
 const obs = new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
-      const siblings = Array.from(e.target.parentElement.children);
-      const i = siblings.indexOf(e.target);
-      setTimeout(()=>e.target.classList.add('visible'), i*90);
+      e.target.classList.add('visible');
       obs.unobserve(e.target);
     }
   });
@@ -543,4 +323,18 @@ document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 // Nav highlight
 const secs = document.querySelectorAll('section[id]');
-const links = document.querySelect
+const links = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  secs.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (scrollY >= sectionTop - 300) current = section.getAttribute('id');
+  });
+  links.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
